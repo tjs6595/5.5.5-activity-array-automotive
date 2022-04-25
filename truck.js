@@ -1,7 +1,7 @@
 //this includes the vehicle class as a module
 const vehicleModule = require("./vehicle")
 
-class Car extends vehicleModule.Vehicle(){
+class Truck extends vehicleModule.Vehicle(){
     constructor(make, model, year, color, mileage){
         super(make, model, year, color, mileage);
         this.maximumPassengers = 5;
@@ -10,6 +10,18 @@ class Car extends vehicleModule.Vehicle(){
         this.maximumSpeed = 160;
         this.fuel = 10;
         this.scheduleService = false;
+        this.timeOfDay = 'dawn';
+        this.lightsOn = false;
+    }
+
+    lightsOn = function(){
+        if(this.timeOfDay === 'dusk' || this.timeOfDay === 'evening' || this.timeOfDay === 'night'){
+            lightsOn = true;
+        }
+        else{
+            lightsOn = false;
+        }
+        return lightsOn;
     }
 
     loadPassenger = function(num){
@@ -32,7 +44,7 @@ class Car extends vehicleModule.Vehicle(){
         return start;
     }
 
-    checkService = function(mileage){
+    checkService = function(){
         if (this.mileage > 30000){
             this.scheduleService = true;
         }
@@ -45,11 +57,12 @@ class Car extends vehicleModule.Vehicle(){
 }
 
 //this shows how to call from this module...
-let car1 = new VehicleModule.Vehicle("Mecury", "Sedan", "1965", "color", "mileage");
+let truck1 = new VehicleModule.Vehicle("Mecury", "Sedan", "1965", "color", "mileage");
 
-car1.start();
-car1.loadPassenger(3);
-car1.stop();
-car1.checkService();
+truck1.lightsOn();
+truck1.start();
+truck1.loadPassenger(3);
+truck1.stop();
+truck1.checkService();
 
-console.log(car1)
+console.log(truck1)
